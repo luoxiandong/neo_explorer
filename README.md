@@ -3,18 +3,18 @@
 1. 获取主币、合约币的utxo (`utxo`,`asset`等)
 
     ```
-SELECT
-    utxo.address_id,
-    utxo.value,
-	utxo.n,
-    asset.name AS asset_symbol,
-		tx.txid
-FROM
-    utxo
-    JOIN asset ON utxo.`asset_id` = asset.`asset_id`
-		JOIN tx  on utxo.tx_id=tx.id
-WHERE
-    utxo.address_id = 1366998 and ISNULL(utxo.used_in_tx)=1;
+	SELECT
+	    utxo.address_id,
+	    utxo.value,
+		utxo.n,
+	    asset.name AS asset_symbol,
+			tx.txid
+	FROM
+	    utxo
+	    JOIN asset ON utxo.`asset_id` = asset.`asset_id`
+			JOIN tx  on utxo.tx_id=tx.id
+	WHERE
+	    utxo.address_id = 1366998 and ISNULL(utxo.used_in_tx)=1;
     ```
 2. 根据address和symol获取余额 (`addr_asset`,`asset`等)
 
