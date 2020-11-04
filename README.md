@@ -62,6 +62,29 @@
         asset_tx. `address_id` = 1
         AND asset. `name` = "NEO"
     ```
+ 5.交易详情
+ ```
+	  -- trans
+	 SELECT tx.* 
+	 FROM tx 
+	 WHERE tx.txid='0x78402ab5bc691ab51e8189808a03cf835a96f7ae5e0fe86c327a802402851a5b';
+
+	 -- trans vin
+	 SELECT tx_vin.vout AS n,tx.txid,utxo.`value`,asset.`name`,address.address 
+	 FROM tx_vin
+	 LEFT JOIN tx ON tx.id=tx_vin.tx_id
+	 LEFT JOIN utxo ON utxo.tx_id=tx.id AND utxo.n=tx_vin.vout
+	 LEFT JOIN asset ON asset.asset_id=utxo.asset_id
+	 LEFT JOIN address ON address.id=utxo.address_id
+	 WHERE tx_vin.tx_id='42752393'
+
+	-- trans vout
+	SELECT tx_vout.n,tx.txid,tx_vout.`value`,asset.`name`,tx_vout.address
+	FROM tx_vout
+	LEFT JOIN tx ON tx.id=tx_vout.tx_id
+	LEFT JOIN asset ON asset.asset_id=tx_vout.asset_id
+	WHERE tx_vout.tx_id='42752393'
+ ```
 
 ## 配置使用
 
