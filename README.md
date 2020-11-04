@@ -6,8 +6,9 @@
 	SELECT
 	    utxo.address_id,
 	    utxo.value,
-		utxo.n,
+		  utxo.n,
 	    asset.name AS asset_symbol,
+			asset.asset_id	as asset_hash,
 			tx.txid
 	FROM
 	    utxo
