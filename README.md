@@ -39,6 +39,7 @@
 	   SELECT
 	    asset.name,
 	    asset.asset_id as contract,
+			asset.`precision`,
 			addr_asset.balance,
 			address.address
 	FROM
