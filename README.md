@@ -36,15 +36,17 @@
 3. 根据address获取symbol列表 (`addr_asset`,`asset`等)
 
     ```
-   SELECT
-        addr_asset.address_id,
-        asset.name,
-        asset.asset_id
-   FROM
-        addr_asset
-        JOIN asset ON addr_asset. `asset_id` = asset. `id`
-   WHERE
-        addr_asset. `address_id` = 1;
+	   SELECT
+	    asset.name,
+	    asset.asset_id as contract,
+			addr_asset.balance,
+			address.address
+	FROM
+	    addr_asset
+	    LEFT JOIN asset ON addr_asset. `asset_id` = asset. `asset_id`
+			LEFT JOIN address ON addr_asset.address_id = address.id
+	WHERE
+	    address.address='AM915nkDP6nDWCLuHTodmCHr5DCfb7XdY7';
     ```
 4. 根据address和symbol获取历史交易记录 (`asset_tx`,`asset`等)
 
