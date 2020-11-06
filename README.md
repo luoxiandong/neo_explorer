@@ -77,7 +77,7 @@
 	 SELECT tx_vin.vout AS n,tx.txid,utxo.`value`,asset.`name`,address.address 
 	 FROM tx_vin
 	 LEFT JOIN tx ON tx.id=tx_vin.tx_id
-	 LEFT JOIN utxo ON utxo.tx_id=tx.id AND utxo.n=tx_vin.vout
+	 LEFT JOIN utxo ON utxo.tx_id=tx_vin.txid AND utxo.n=tx_vin.vout
 	 LEFT JOIN asset ON asset.asset_id=utxo.asset_id
 	 LEFT JOIN address ON address.id=utxo.address_id
 	 WHERE tx_vin.tx_id='42752393'
