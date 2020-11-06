@@ -88,6 +88,12 @@
 	LEFT JOIN tx ON tx.id=tx_vout.tx_id
 	LEFT JOIN asset ON asset.asset_id=tx_vout.asset_id
 	WHERE tx_vout.tx_id='42752393'
+	
+	-- nep5
+	SELECT nep5_tx.`from`,nep5_tx.`to`,nep5_tx.`value`,nep5.`name`,nep5.symbol,nep5.asset_id as contract
+	FROM nep5_tx
+	LEFT JOIN nep5 ON nep5_tx.asset_id=nep5.asset_id
+	WHERE nep5_tx.tx_id='42834670';
  ```
 
 ## 配置使用
