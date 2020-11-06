@@ -39,15 +39,20 @@
 	   SELECT
 	    asset.name,
 	    asset.asset_id as contract,
-			asset.`precision`,
-			addr_asset.balance,
-			address.address
+		asset.`precision` as decimals,
+		addr_asset.balance,
+		address.address,
+		nep5.addresses as nep_address,
+		nep5.asset_id as nep_contract,
+		nep5.decimals as nep_decimals,
+		nep5.symbol as nep_name
 	FROM
 	    addr_asset
 	    LEFT JOIN asset ON addr_asset. `asset_id` = asset. `asset_id`
 			LEFT JOIN address ON addr_asset.address_id = address.id
+			LEFT JOIN nep5 ON nep5.asset_id=addr_asset.asset_id
 	WHERE
-	    address.address='AM915nkDP6nDWCLuHTodmCHr5DCfb7XdY7';
+	    address.address='AKvZWVG75aHUiESRE9v6YkkJmjxTYFnRQb';
     ```
 4. 根据address和symbol获取历史交易记录 (`asset_tx`,`asset`等)
 
